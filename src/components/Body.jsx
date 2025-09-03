@@ -1,24 +1,30 @@
-import Card from './Card';
+import { useState } from 'react';
+import Banner from '../assets/banner.jpg';
 import "../styles/Body.css";
-import Banner  from '../assets/banner.jpg';
+import Card from './Card';
 
 function Body(){
-    const objeto = produtos.JSON.parse(localStorage.getItem('roupas'));
+    const [roupas, setRoupas] = useState([]);
+    
+    fetch('/produtos.JSON')
+        .then(res => res.json())
+        .then(dados => setRoupas(dados.roupas));
     
     return(
         <main>
-            <img src={Banner} alt="mcqueen" className='pqp'/>
-            <h1 className='body-title'>Lorem Ipsum</h1>
-            <p className='body-text'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint at veniam itaque illum veritatis optio explicabo et cumque fuga ab magnam.</p>
+            <img src={Banner} alt="banner" className='pqp'/>
+            <h1 className='body-title'>Nossas Roupas</h1>
+            <p className='body-text'>Descubra nossa coleção de roupas sustentáveis e eco-friendly.</p>
             <div className='body-cards'>
-                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
-                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
-                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
-                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
+                {roupas.map((roupa) => (
+                    <Card 
+                        key={roupa.id}
+                        nome={roupa.nome}
+                        preco={roupa.preco}
+                        img={roupa.img}
+                    />
+                ))}
             </div>
-
-
-
         </main>
     );
 }
