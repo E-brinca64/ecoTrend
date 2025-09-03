@@ -5,7 +5,7 @@
   padding: 20px;
   margin: 10px;
   text-align: center;
-  max-width: 250px;
+  max-width: 350px;
   display: inline-block;
   background-color: #fff;
 }
@@ -41,17 +41,17 @@
   display: flex;
   justify-content: flex-start;
   font-weight: 500;
-  margin-top: 5%;
+  margin-top: 1%;
 }
 .card-button{
     background-color: #8ed165;
     color: #fff;
-    padding: 10px 20px;
+    padding: 20px 50px;
     border: none;
     font-size: 16px;
     font-weight: 800;
     border-radius: 10px;
     cursor: pointer;
     margin: 10px;
-
+  max-width: 280px;
 }

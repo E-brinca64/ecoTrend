@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <Header/>
+      <Body />
       
-      <Card nome="teste" descricao="lorem ipsum" preco="22"/>
     </>
   );
 }

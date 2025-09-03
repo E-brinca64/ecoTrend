@@ -1,9 +1,24 @@
+import Card from './Card';
+import "../styles/Body.css";
+import Banner  from '../assets/banner.jpg';
 
 function Body(){
+    const objeto = produtos.JSON.parse(localStorage.getItem('roupas'));
+    
     return(
         <main>
-            <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=46&pause=1000&color=49a078&vCenter=true&repeat=false&width=800&height=75&lines=Bem+vindo+a+Loja+EcoTrend" alt="Typing SVG" /></a>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab. Assumenda praesentium eum similique consequuntur laborum sequi nulla possimus accusamus, deleniti nobis maiores officiis veniam consequatur ab minus repellat cum?</p>
+            <img src={Banner} alt="mcqueen" className='pqp'/>
+            <h1 className='body-title'>Lorem Ipsum</h1>
+            <p className='body-text'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint at veniam itaque illum veritatis optio explicabo et cumque fuga ab magnam.</p>
+            <div className='body-cards'>
+                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
+                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
+                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
+                <Card nome="teste" descricao="lorem ipsum" preco="22"/>
+            </div>
+
+
+
         </main>
     );
 }
