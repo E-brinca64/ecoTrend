@@ -27,6 +27,7 @@ header {
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .header-logo {
@@ -42,6 +43,106 @@ header {
   height: 40px;
   object-fit: contain;
   opacity: 0.8;
+}
+
+.header-search {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+  position: relative;
+}
+
+.search-form {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.search-input-container:focus-within {
+  border-color: #8ed165;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  font-family: "Epilogue", sans-serif;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: rgba(142, 209, 101, 0.1);
+}
+
+.search-history {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+
+.search-history-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+  margin: 0 0 0.5rem 0;
+}
+
+.search-history-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.search-history-item {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Epilogue", sans-serif;
+}
+
+.search-history-item:hover {
+  background-color: #8ed165;
+  color: white;
+  border-color: #8ed165;
 }
 
 .header-actions {
@@ -122,7 +223,6 @@ header {
   justify-content: center;
 }
 
-/* Media queries para responsividade */
 @media (max-width: 768px) {
   header {
     margin: 0;
@@ -132,6 +232,13 @@ header {
   .header-row {
     justify-content: space-between;
     gap: 0.5rem;
+  }
+
+  .header-search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    margin: 0.5rem 0 0 0;
   }
 
   .header-actions {
@@ -169,7 +276,6 @@ header {
   }
 }
 
-/* Divisória verde do header */
 .divisoria-verde {
   width: 100vw;
   height: 12px;
@@ -214,7 +320,6 @@ header {
   }
 }
 
-/* Responsividade da divisória no header */
 @media (max-width: 768px) {
   .divisoria-verde {
     height: 10px;
