@@ -1,27 +1,208 @@
-.body-title{
-    font-size: 64px;
-    font-weight: 600;
-    margin: 5% 0 2% 2%;
+main {
+  padding: 0 2%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
 
+.body-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  margin: 3% 0 1% 0;
+  text-align: center;
+  color: #333;
 }
-.body-text{
-    font-size: 26px;
-    font-weight: 500;
-    margin: 2%;
-    max-width: 1200px;
-}
-.body-cards{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
+.body-text {
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: 500;
+  margin: 1% 0 3% 0;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #666;
+  line-height: 1.6;
 }
-.pqp{
-    margin: 0;
-    width: 100%;
+
+.body-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem 0;
 }
-.row{
-    display: flex;
-    flex-direction: row;
+
+.banner {
+  margin: 0;
+  width: 100vw;
+  height: clamp(250px, 40vw, 500px);
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.divisoria-verde {
+  width: 100vw;
+  height: 20px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #8ed165 20%,
+    #7bc85a 50%,
+    #8ed165 80%,
+    transparent 100%
+  );
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.divisoria-verde::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  justify-content: flex-start;
+}
+
+.row .card,
+.row .ver-mais-card {
+  flex: 0 0 calc(25% - 0.75rem);
+  min-width: 280px;
+  max-width: calc(25% - 0.75rem);
+}
+
+/* Primeira linha sempre mostra 3 produtos + ver mais */
+.row:first-child {
+  max-width: 100%;
+}
+
+.row:first-child .card,
+.row:first-child .ver-mais-card {
+  flex: 0 0 calc(25% - 0.75rem);
+}
+
+.section {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 1200px) {
+  .row .card,
+  .row .ver-mais-card {
+    flex: 0 0 calc(33.333% - 0.67rem);
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 1rem;
+  }
+
+  .banner {
+    height: clamp(200px, 35vw, 350px);
+    margin-bottom: 0;
+  }
+
+  .divisoria-verde {
+    height: 16px;
+    margin-bottom: 2rem;
+  }
+
+  .body-title {
+    margin: 2% 0 1% 0;
+  }
+
+  .body-text {
+    margin: 1% 0 2% 0;
+  }
+
+  .row .card,
+  .row .ver-mais-card {
+    flex: 0 0 calc(50% - 0.5rem);
+    min-width: 220px;
+  }
+
+  .row {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 0.5rem;
+  }
+
+  .banner {
+    height: clamp(150px, 25vw, 220px);
+    margin-bottom: 0;
+  }
+
+  .divisoria-verde {
+    height: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .row .card,
+  .row .ver-mais-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .row {
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .body-cards {
+    margin: 1rem 0;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
 }

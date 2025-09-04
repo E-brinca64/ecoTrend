@@ -1,30 +1,73 @@
-import "../styles/Header.css"
+import { useEffect, useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
-
+import "../styles/Header.css";
+import CarrinhoModal from "./CarrinhoModal";
 
 function Header(){
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
+    const [totalItens, setTotalItens] = useState(0);
 
-    const qtdCart = 0
+    useEffect(() => {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+        const total = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+        setTotalItens(total);
+    }, []);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+            const total = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+            setTotalItens(total);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('carrinhoAtualizado', handleStorageChange);
+        
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('carrinhoAtualizado', handleStorageChange);
+        };
+    }, []);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
     return(
         <header>
             <div className="header-row">
-                <h1 className="header-logo">ecotrend</h1>
+                <div className="header-logo-container">
+                    <h1 className="header-logo">ecotrend</h1>
+                    <img src="/planta.png" alt="planta" className="header-plant" />
+                </div>
 
-                <div className="header-row">
-                    <div className="header-cart">
-                        <BsCart2 size={30} color="#000" /> 
-                        <p className="header-cart-text">Carrinho {qtdCart}</p>
+                <div className="header-actions">
+                    <div className="header-cart" onClick={() => setIsCarrinhoOpen(true)}>
+                        <BsCart2 size={24} color="#000" /> 
+                        <p className="header-cart-text">Carrinho ({totalItens})</p>
                     </div>
 
                     <div className="header-user">
-                        <GoPerson size={30} color="#000"/>
+                        <GoPerson size={24} color="#000"/>
                         <p className="header-user-text">Entrar</p>
+                    </div>
+
+                    <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
-        {/* <p className="center"><img src="https://readme-typing-svg.demolab.com?font=Epilogue&weight=600&size=46&pause=5000&color=8ed165&Center=true&vCenter=true&repeat=true&width=800&height=75&lines=Bem+vindo+a+Loja+EcoTrend" alt="Typing SVG" /></p> */}
             
+            <div className="divisoria-verde"></div>
+            
+            <CarrinhoModal 
+                isOpen={isCarrinhoOpen} 
+                onClose={() => setIsCarrinhoOpen(false)} 
+            />
         </header>
     );
 }

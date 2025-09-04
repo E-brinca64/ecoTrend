@@ -1,17 +1,31 @@
-import Header from './components/Header'
+import { useState } from 'react';
 import Body from './components/Body';
-import Card from './components/Card';
-
-
+import Catalogo from './components/Catalogo';
+import Header from './components/Header';
 
 function App() {
+  const [paginaAtual, setPaginaAtual] = useState('home');
+  const [categoriaAtual, setCategoriaAtual] = useState('');
+
+  const navegarParaCatalogo = (categoria) => {
+    setCategoriaAtual(categoria);
+    setPaginaAtual('catalogo');
+  };
+
+  const voltarParaHome = () => {
+    setPaginaAtual('home');
+    setCategoriaAtual('');
+  };
 
   return (
-    <>
+    <div className="app">
       <Header/>
-      <Body />
-      
-    </>
+      {paginaAtual === 'home' ? (
+        <Body onVerMais={navegarParaCatalogo} />
+      ) : (
+        <Catalogo categoria={categoriaAtual} onVoltar={voltarParaHome} />
+      )}
+    </div>
   );
 }
 

@@ -1,49 +1,228 @@
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
-header{
-    display: flex;
-    flex-direction: column;
-    margin: 2%;
-    font-family: "Epilogue", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap");
+
+header {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Epilogue", sans-serif;
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  z-index: 100;
+  padding: 1rem 2% 0 2%;
+  width: 100%;
 }
-.header-row{
-    display: flex;
-    flex-direction: row;
+
+.header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.header-logo {
+  font-family: "Epilogue", sans-serif;
+  color: #8ed165;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin: 0;
+}
+
+.header-plant {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.header-cart:hover {
+  background-color: rgba(142, 209, 101, 0.1);
+}
+
+.header-cart-text {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  margin: 0 0.5rem;
+  font-weight: 500;
+}
+
+.header-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.header-user:hover {
+  background-color: rgba(142, 209, 101, 0.1);
+}
+
+.header-user-text {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  margin: 0 0.5rem;
+  font-weight: 500;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: rgba(142, 209, 101, 0.1);
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+  header {
+    margin: 0;
+    padding: 0.5rem 1rem 0 1rem;
+  }
+
+  .header-row {
     justify-content: space-between;
-}
-.header-logo{
-    font-family: "Epilogue", sans-serif;
-    color: #8ed165;
-    font-weight: 400;
-    margin: 10px;
-}
+    gap: 0.5rem;
+  }
 
+  .header-actions {
+    gap: 0.5rem;
+  }
 
+  .header-cart-text,
+  .header-user-text {
+    display: none;
+  }
 
-
-.header-cart{
+  .mobile-menu-toggle {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 1rem;
+  }
 }
-.header-cart-text{
+
+@media (max-width: 480px) {
+  header {
+    margin: 0;
+    padding: 0.5rem 1rem 0 1rem;
+  }
+
+  .header-logo {
     font-size: 1.5rem;
-    margin: 0 5px;
+  }
+
+  .header-plant {
+    width: 30px;
+    height: 30px;
+  }
+
+  .header-cart,
+  .header-user {
+    padding: 0.25rem;
+  }
 }
-.header-user{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 1rem;
+
+/* Divisória verde do header */
+.divisoria-verde {
+  width: 100vw;
+  height: 12px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #8ed165 20%,
+    #7bc85a 50%,
+    #8ed165 80%,
+    transparent 100%
+  );
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-.header-user-text{
-    font-size: 1.5rem;
-    margin: 0 5px;
+
+.divisoria-verde::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 3s infinite;
 }
-.center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsividade da divisória no header */
+@media (max-width: 768px) {
+  .divisoria-verde {
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .divisoria-verde {
+    height: 8px;
+  }
 }
