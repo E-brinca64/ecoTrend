@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Banner from '../assets/banner.jpg';
 import "../styles/Body.css";
 import Card from './Card';
+import Sidebar from './Sidebar';
 
 function Body(){
     const [roupas, setRoupas] = useState([]);
@@ -21,6 +22,7 @@ function Body(){
 
     return(
         <main>
+            <Sidebar/>
             <img src={Banner} alt="banner" className='pqp'/>
             <h1 className='body-title'>Nossas Roupas</h1>
             <p className='body-text'>Descubra nossa coleção de roupas sustentáveis e eco-friendly.</p>

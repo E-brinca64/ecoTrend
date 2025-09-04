@@ -2,7 +2,8 @@ import roupa from "../assets/teste.jpg";
 import "../styles/Card.css";
 
 function Card(props){
-
+    let teste = ""
+    const clickada = () => localStorage.setItem("teste", teste)
     return(
         <div className="card">
             <img className="card-img" src={props.img || roupa} alt={props.nome}/>
@@ -10,7 +11,7 @@ function Card(props){
             
             <p className="card-price">R$ {props.preco?.toFixed(2)}</p>
 
-            <button className="card-button">Adicionar ao carrinho</button>
+            <button className="card-button" onClick={clickada}  >{props.key}Adicionar ao carrinho</button>
         </div>
     );
 }
