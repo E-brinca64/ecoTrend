@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Body from './components/Body';
 import Catalogo from './components/Catalogo';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 
@@ -49,6 +50,7 @@ function App() {
           onVoltar={voltarParaHome} 
         />
       )}
+      <Footer />
     </div>
   );
 }
