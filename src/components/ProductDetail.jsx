@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import produtosData from '../data/produtos.json';
 import '../styles/ProductDetail.css';
+import { processProducts } from '../utils/imageResolver';
 import SimilarProducts from './SimilarProducts';
 
 function ProductDetail({ productId, onVoltar }) {
@@ -20,7 +21,8 @@ function ProductDetail({ productId, onVoltar }) {
         }
         
         if (foundProduct) {
-          setProduct(foundProduct);
+          const processedProduct = processProducts([foundProduct])[0];
+          setProduct(processedProduct);
         } else {
           setError('Produto não encontrado');
         }
