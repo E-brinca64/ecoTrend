@@ -4,7 +4,7 @@ import '../styles/ProductDetail.css';
 import { processProducts } from '../utils/imageResolver';
 import SimilarProducts from './SimilarProducts';
 
-function ProductDetail({ productId, onVoltar }) {
+function ProductDetail({ productId, onVoltar, onProductClick }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -119,9 +119,7 @@ function ProductDetail({ productId, onVoltar }) {
         
         <SimilarProducts 
           currentProduct={product}
-          onProductClick={(id) => {
-            window.location.href = `#/produto/${id}`;
-          }}
+          onProductClick={onProductClick}
         />
       </div>
     </div>

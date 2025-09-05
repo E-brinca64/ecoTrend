@@ -118,7 +118,7 @@ function App() {
         ) : paginaAtual === 'catalogo' ? (
           <Catalogo categoria={categoriaAtual} onVoltar={voltarParaHome} onProductClick={handleProductClick} />
         ) : paginaAtual === 'product' ? (
-          <ProductDetail productId={selectedProductId} onVoltar={voltarDaPaginaProduto} />
+          <ProductDetail productId={selectedProductId} onVoltar={voltarDaPaginaProduto} onProductClick={handleProductClick} />
         ) : paginaAtual === 'favoritos' ? (
           <Favorites onVoltar={voltarParaHome} onProductClick={handleProductClick} />
         ) : paginaAtual === 'checkout' ? (
