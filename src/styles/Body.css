@@ -137,16 +137,22 @@ main {
   main {
     padding: 0 1rem;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .banner {
     height: clamp(200px, 35vw, 350px);
     margin-bottom: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
   .divisoria-verde {
     height: 16px;
     margin-bottom: 2rem;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
   .body-title {
@@ -177,16 +183,22 @@ main {
   main {
     padding: 0 0.5rem;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .banner {
     height: clamp(150px, 25vw, 220px);
     margin-bottom: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
   .divisoria-verde {
     height: 12px;
     margin-bottom: 1.5rem;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
   .row .card,

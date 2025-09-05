@@ -32,8 +32,15 @@ body {
 
 /* Prevenir overflow horizontal apenas em dispositivos móveis */
 @media (max-width: 768px) {
+  html,
   body {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  * {
+    max-width: 100vw;
   }
 }
 
