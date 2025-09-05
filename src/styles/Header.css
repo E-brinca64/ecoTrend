@@ -266,6 +266,7 @@ header {
   .header-row {
     justify-content: space-between;
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .header-search {
@@ -277,8 +278,20 @@ header {
 
   .header-actions {
     gap: 0.5rem;
+    flex-shrink: 0;
+    margin-left: auto;
   }
 
+  .header-favorites,
+  .header-cart,
+  .header-user {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-favorites-text,
   .header-cart-text,
   .header-user-text {
     display: none;
@@ -295,17 +308,21 @@ header {
     padding: 0.5rem 1rem 0 1rem;
   }
 
-  .header-logo {
-    font-size: 1.5rem;
+  .header-actions {
+    gap: 0.25rem;
+    margin-left: auto;
   }
 
-  .header-plant {
-    width: 30px;
-    height: 30px;
-  }
-
+  .header-favorites,
   .header-cart,
   .header-user {
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-toggle {
     padding: 0.25rem;
   }
 }
