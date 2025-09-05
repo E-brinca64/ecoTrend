@@ -5,7 +5,7 @@
       "nome": "camiseta",
       "cor": "preta",
       "preco": 69.90,
-      "img": "/src/assets/camisaVerde.png",
+      "img": "src/assets/camisaVerde.png",
       "categoria": "roupas"
     },
     {
@@ -13,7 +13,7 @@
       "nome": "calça",
       "cor": "azul",
       "preco": 89.90,
-      "img": "/src/assets/calca.png",
+      "img": "src/assets/calca.png",
       "categoria": "roupas"
     },
     {
@@ -21,7 +21,7 @@
       "nome": "camiseta",
       "cor": "verde",
       "preco": 49.90,
-      "img": "/src/assets/camisaVerde.png",
+      "img": "src/assets/camisaVerde.png",
       "categoria": "roupas"
     },
     {
@@ -29,7 +29,7 @@
       "nome": "vestido",
       "cor": "branco",
       "preco": 119.90,
-      "img": "/src/assets/vestido.jpg",
+      "img": "src/assets/vestido.jpg",
       "categoria": "roupas"
     },
     {
@@ -37,7 +37,7 @@
       "nome": "jaqueta",
       "cor": "preta",
       "preco": 159.90,
-      "img": "/src/assets/jaqueta.jpg",
+      "img": "src/assets/jaqueta.jpg",
       "categoria": "roupas"
     }
   ],
@@ -47,7 +47,7 @@
       "nome": "batom",
       "cor": "rosa",
       "preco": 12.00,
-      "img": "/src/assets/batom.png",
+      "img": "src/assets/batom.png",
       "categoria": "ProdutosDeBeleza"
     },
     {
@@ -55,7 +55,7 @@
       "nome": "base",
       "cor": "",
       "preco": 19.90,
-      "img": "/src/assets/base.jpg",
+      "img": "src/assets/base.jpg",
       "categoria": "ProdutosDeBeleza"
     },
     {
@@ -63,7 +63,7 @@
       "nome": "shampoo",
       "cor": "verde",
       "preco": 23.90,
-      "img": "/src/assets/shampoo.png",
+      "img": "src/assets/shampoo.png",
       "categoria": "ProdutosDeBeleza"
     },
     {
@@ -71,7 +71,7 @@
       "nome": "sabonete",
       "cor": "branco",
       "preco": 3.90,
-      "img": "/src/assets/sabonete.png",
+      "img": "src/assets/sabonete.png",
       "categoria": "ProdutosDeBeleza"
     }
   ],
@@ -81,7 +81,7 @@
       "nome": "planta",
       "cor": "",
       "preco": 69.90,
-      "img": "/src/assets/planta.png",
+      "img": "src/assets/planta.png",
       "categoria": "itensParaCasa"
     },
     {
@@ -89,7 +89,7 @@
       "nome": "maquina de lavar",
       "cor": "branco",
       "preco": 2400.00,
-      "img": "/src/assets/maquina.jpg",
+      "img": "src/assets/maquina.jpg",
       "categoria": "itensParaCasa"
     }
   ]
