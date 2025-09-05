@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Banner from '../assets/banner.png';
+import produtosData from '../data/produtos.json';
 import "../styles/Body.css";
 import Card from './Card';
 import Sidebar from './Sidebar';
@@ -11,14 +12,9 @@ function Body({ onVerMais, onProductClick }){
     const [itensParaCasa, setItenParaCasa] = useState([]);
 
     useEffect(() => {
-        fetch('/produtos.json')
-            .then(res => res.json())
-            .then(dados => {
-                setRoupas(dados.roupas);
-                setProdutosDeBeleza(dados.produtosDeBeleza);
-                setItenParaCasa(dados.itensParaCasa);
-            })
-            .catch(err => console.error("Erro ao carregar produtos:", err));
+        setRoupas(produtosData.roupas);
+        setProdutosDeBeleza(produtosData.produtosDeBeleza);
+        setItenParaCasa(produtosData.itensParaCasa);
     }, []);
 
     return(

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import produtosData from '../data/produtos.json';
 import '../styles/SimilarProducts.css';
 import Card from './Card';
 
@@ -10,12 +11,10 @@ function SimilarProducts({ currentProduct, onProductClick }) {
     const fetchSimilarProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/produtos.JSON');
-        const data = await response.json();
         
         let allProducts = [];
-        for (const category in data) {
-          allProducts = [...allProducts, ...data[category]];
+        for (const category in produtosData) {
+          allProducts = [...allProducts, ...produtosData[category]];
         }
         
         const similar = allProducts

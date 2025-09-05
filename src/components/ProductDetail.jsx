@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import produtosData from '../data/produtos.json';
 import '../styles/ProductDetail.css';
 import SimilarProducts from './SimilarProducts';
 
@@ -11,12 +12,10 @@ function ProductDetail({ productId, onVoltar }) {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/produtos.JSON');
-        const data = await response.json();
         
         let foundProduct = null;
-        for (const category in data) {
-          foundProduct = data[category].find(item => item.id === parseInt(productId));
+        for (const category in produtosData) {
+          foundProduct = produtosData[category].find(item => item.id === parseInt(productId));
           if (foundProduct) break;
         }
         

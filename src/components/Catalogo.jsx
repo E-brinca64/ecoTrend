@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import produtosData from '../data/produtos.json';
 import "../styles/Catalogo.css";
 import Card from './Card';
 
@@ -15,48 +16,43 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
     const [isFiltrosOpen, setIsFiltrosOpen] = useState(false);
 
     useEffect(() => {
-        fetch('/produtos.json')
-            .then(res => res.json())
-            .then(dados => {
-                let produtosCategoria = [];
-                let tituloCategoria = '';
-                let descricaoCategoria = '';
+        let produtosCategoria = [];
+        let tituloCategoria = '';
+        let descricaoCategoria = '';
 
-                switch(categoria) {
-                    case 'roupas':
-                        produtosCategoria = dados.roupas;
-                        tituloCategoria = 'Nossas Roupas';
-                        descricaoCategoria = 'Descubra nossa coleção de roupas sustentáveis e eco-friendly.';
-                        break;
-                    case 'beleza':
-                        produtosCategoria = dados.produtosDeBeleza;
-                        tituloCategoria = 'Nossos Produtos de Beleza';
-                        descricaoCategoria = 'Produtos de beleza naturais e sustentáveis para sua rotina.';
-                        break;
-                    case 'casa':
-                        produtosCategoria = dados.itensParaCasa;
-                        tituloCategoria = 'Itens para Casa';
-                        descricaoCategoria = 'Transforme sua casa com produtos sustentáveis e eco-friendly.';
-                        break;
-                    case 'todos':
-                        produtosCategoria = [
-                            ...dados.roupas,
-                            ...dados.produtosDeBeleza,
-                            ...dados.itensParaCasa
-                        ];
-                        tituloCategoria = 'Todos os Produtos';
-                        descricaoCategoria = 'Explore nossa coleção completa de produtos sustentáveis e eco-friendly.';
-                        break;
-                    default:
-                        produtosCategoria = [];
-                }
+        switch(categoria) {
+            case 'roupas':
+                produtosCategoria = produtosData.roupas;
+                tituloCategoria = 'Nossas Roupas';
+                descricaoCategoria = 'Descubra nossa coleção de roupas sustentáveis e eco-friendly.';
+                break;
+            case 'beleza':
+                produtosCategoria = produtosData.produtosDeBeleza;
+                tituloCategoria = 'Nossos Produtos de Beleza';
+                descricaoCategoria = 'Produtos de beleza naturais e sustentáveis para sua rotina.';
+                break;
+            case 'casa':
+                produtosCategoria = produtosData.itensParaCasa;
+                tituloCategoria = 'Itens para Casa';
+                descricaoCategoria = 'Transforme sua casa com produtos sustentáveis e eco-friendly.';
+                break;
+            case 'todos':
+                produtosCategoria = [
+                    ...produtosData.roupas,
+                    ...produtosData.produtosDeBeleza,
+                    ...produtosData.itensParaCasa
+                ];
+                tituloCategoria = 'Todos os Produtos';
+                descricaoCategoria = 'Explore nossa coleção completa de produtos sustentáveis e eco-friendly.';
+                break;
+            default:
+                produtosCategoria = [];
+        }
 
-                setProdutos(produtosCategoria);
-                setProdutosFiltrados(produtosCategoria);
-                setTitulo(tituloCategoria);
-                setDescricao(descricaoCategoria);
-            })
-            .catch(err => console.error("Erro ao carregar produtos:", err));
+        setProdutos(produtosCategoria);
+        setProdutosFiltrados(produtosCategoria);
+        setTitulo(tituloCategoria);
+        setDescricao(descricaoCategoria);
     }, [categoria]);
 
     const aplicarFiltros = () => {

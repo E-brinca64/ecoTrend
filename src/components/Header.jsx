@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BsCart2, BsHeart, BsSearch } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
 import { useFavorites } from "../contexts/FavoritesContext";
+import produtosData from '../data/produtos.json';
 import "../styles/Header.css";
 import LoginModal from "./LoginModal";
 
@@ -67,13 +68,10 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesC
         if (!termo.trim()) return;
         
         try {
-            const response = await fetch('/produtos.json');
-            const dados = await response.json();
-            
             const todosProdutos = [
-                ...dados.roupas,
-                ...dados.produtosDeBeleza,
-                ...dados.itensParaCasa
+                ...produtosData.roupas,
+                ...produtosData.produtosDeBeleza,
+                ...produtosData.itensParaCasa
             ];
             
             const resultados = todosProdutos.filter(produto => {
