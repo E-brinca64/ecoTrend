@@ -4,7 +4,7 @@ import { GoPerson } from "react-icons/go";
 import "../styles/Header.css";
 import CarrinhoModal from "./CarrinhoModal";
 
-function Header({ onSearch, onHome }){
+function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
     const [totalItens, setTotalItens] = useState(0);
@@ -56,6 +56,9 @@ function Header({ onSearch, onHome }){
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
+        if (onSidebarToggle) {
+            onSidebarToggle();
+        }
     };
 
     const handleSearch = async (termo) => {
@@ -176,7 +179,7 @@ function Header({ onSearch, onHome }){
                         <p className="header-user-text">Entrar</p>
                     </div>
 
-                    <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+                    <div className={`mobile-menu-toggle ${isSidebarOpen ? 'active' : ''}`} onClick={toggleMobileMenu}>
                         <span></span>
                         <span></span>
                         <span></span>

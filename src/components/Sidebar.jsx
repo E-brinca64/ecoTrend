@@ -1,14 +1,49 @@
 
 import "../styles/Sidebar.css";
 
-function Sidebar(){
+function Sidebar({ isOpen, onClose, onNavigate }){
+    const handleMenuItemClick = (item) => {
+        if (onNavigate) {
+            onNavigate(item);
+        }
+        if (onClose) {
+            onClose();
+        }
+    };
+
     return(
-        <aside className="sidebar">
-            <div className="sidebar-content">
-                <h2 className="sidebar-title">Carrinho de Compras</h2>
-                <p className="sidebar-text">Seus itens aparecerão aqui</p>
-            </div>
-        </aside>
+        <>
+            {isOpen && (
+                <div className="sidebar-overlay active" onClick={onClose}></div>
+            )}
+            
+            <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+                <div className="sidebar-content">
+                    <div className="sidebar-header">
+                        <h2 className="sidebar-title">Menu</h2>
+                        <button className="sidebar-close" onClick={onClose}>
+                            ×
+                        </button>
+                    </div>
+                    
+                    <nav className="sidebar-nav">
+                        <button 
+                            className="sidebar-menu-item"
+                            onClick={() => handleMenuItemClick('todos')}
+                        >
+                            Todos os Itens
+                        </button>
+                        
+                        <button 
+                            className="sidebar-menu-item"
+                            onClick={() => handleMenuItemClick('sobre')}
+                        >
+                            Sobre Nós
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+        </>
     );
 }
 export default Sidebar
