@@ -18,18 +18,18 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
-# Install curl and procps for health checks
-RUN apk add --no-cache curl procps
+# Install curl for health checks (if needed)
+# RUN apk add --no-cache curl procps
 
 # Copy built assets from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy nginx configuration
-COPY nginx-simple.conf /etc/nginx/conf.d/default.conf
+COPY nginx-ultra-simple.conf /etc/nginx/conf.d/default.conf
 
-# Copy health check script
-COPY healthcheck.sh /usr/local/bin/healthcheck.sh
-RUN chmod +x /usr/local/bin/healthcheck.sh
+# Copy health check script (temporarily disabled)
+# COPY healthcheck.sh /usr/local/bin/healthcheck.sh
+# RUN chmod +x /usr/local/bin/healthcheck.sh
 
 # Set proper permissions
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
@@ -38,9 +38,9 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
 # Expose port 80
 EXPOSE 80
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD /usr/local/bin/healthcheck.sh
+# Health check (temporarily disabled for debugging)
+# HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+#     CMD /usr/local/bin/healthcheck.sh
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
