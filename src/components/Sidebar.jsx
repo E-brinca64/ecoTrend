@@ -40,13 +40,6 @@ function Sidebar({ isOpen, onClose, onNavigate }){
                         >
                             💚 Meus Favoritos
                         </button>
-                        
-                        <button 
-                            className="sidebar-menu-item"
-                            onClick={() => handleMenuItemClick('sobre')}
-                        >
-                            Sobre Nós
-                        </button>
                     </nav>
                 </div>
             </aside>
