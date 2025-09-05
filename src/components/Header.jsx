@@ -3,10 +3,12 @@ import { BsCart2, BsSearch } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
 import "../styles/Header.css";
 import CarrinhoModal from "./CarrinhoModal";
+import LoginModal from "./LoginModal";
 
 function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [totalItens, setTotalItens] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchHistory, setSearchHistory] = useState([]);
@@ -174,7 +176,7 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
                         <p className="header-cart-text">Carrinho ({totalItens})</p>
                     </div>
 
-                    <div className="header-user">
+                    <div className="header-user" onClick={() => setIsLoginOpen(true)}>
                         <GoPerson size={24} color="#000"/>
                         <p className="header-user-text">Entrar</p>
                     </div>
@@ -192,6 +194,11 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
             <CarrinhoModal 
                 isOpen={isCarrinhoOpen} 
                 onClose={() => setIsCarrinhoOpen(false)} 
+            />
+            
+            <LoginModal 
+                isOpen={isLoginOpen} 
+                onClose={() => setIsLoginOpen(false)} 
             />
         </header>
     );
