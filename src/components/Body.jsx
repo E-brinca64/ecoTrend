@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import Banner from '../assets/banner.png';
+import Banner from '../assets/bannereco.png';
 import produtosData from '../data/produtos.json';
 import "../styles/Body.css";
+import { processProducts } from '../utils/imageResolver';
 import Card from './Card';
 import Sidebar from './Sidebar';
 import VerMais from './VerMais';
@@ -12,9 +13,9 @@ function Body({ onVerMais, onProductClick }){
     const [itensParaCasa, setItenParaCasa] = useState([]);
 
     useEffect(() => {
-        setRoupas(produtosData.roupas);
-        setProdutosDeBeleza(produtosData.produtosDeBeleza);
-        setItenParaCasa(produtosData.itensParaCasa);
+        setRoupas(processProducts(produtosData.roupas));
+        setProdutosDeBeleza(processProducts(produtosData.produtosDeBeleza));
+        setItenParaCasa(processProducts(produtosData.itensParaCasa));
     }, []);
 
     return(

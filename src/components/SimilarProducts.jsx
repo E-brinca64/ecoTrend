@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import produtosData from '../data/produtos.json';
 import '../styles/SimilarProducts.css';
+import { processProducts } from '../utils/imageResolver';
 import Card from './Card';
 
 function SimilarProducts({ currentProduct, onProductClick }) {
@@ -16,6 +17,7 @@ function SimilarProducts({ currentProduct, onProductClick }) {
         for (const category in produtosData) {
           allProducts = [...allProducts, ...produtosData[category]];
         }
+        allProducts = processProducts(allProducts);
         
         const similar = allProducts
           .filter(product => 

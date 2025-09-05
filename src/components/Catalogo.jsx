@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import produtosData from '../data/produtos.json';
 import "../styles/Catalogo.css";
+import { processProducts } from '../utils/imageResolver';
 import Card from './Card';
 
 function Catalogo({ categoria, onVoltar, onProductClick }) {
@@ -49,8 +50,9 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
                 produtosCategoria = [];
         }
 
-        setProdutos(produtosCategoria);
-        setProdutosFiltrados(produtosCategoria);
+        const produtosProcessados = processProducts(produtosCategoria);
+        setProdutos(produtosProcessados);
+        setProdutosFiltrados(produtosProcessados);
         setTitulo(tituloCategoria);
         setDescricao(descricaoCategoria);
     }, [categoria]);

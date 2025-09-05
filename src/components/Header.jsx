@@ -4,6 +4,7 @@ import { GoPerson } from "react-icons/go";
 import { useFavorites } from "../contexts/FavoritesContext";
 import produtosData from '../data/produtos.json';
 import "../styles/Header.css";
+import { processProducts } from '../utils/imageResolver';
 import LoginModal from "./LoginModal";
 
 function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesClick, onCarrinhoClick }){
@@ -68,11 +69,11 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesC
         if (!termo.trim()) return;
         
         try {
-            const todosProdutos = [
+            const todosProdutos = processProducts([
                 ...produtosData.roupas,
                 ...produtosData.produtosDeBeleza,
                 ...produtosData.itensParaCasa
-            ];
+            ]);
             
             const resultados = todosProdutos.filter(produto => {
                 const nomeMatch = produto.nome.toLowerCase().includes(termo.toLowerCase());
