@@ -22,5 +22,10 @@ export default defineConfig({
   preview: {
     port: 3000,
     host: true,
+    allowedHosts: [
+      'ecotrend-cp.codelgc.com',
+      'localhost',
+      '127.0.0.1'
+    ],
   },
 })
