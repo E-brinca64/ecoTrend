@@ -1,4 +1,3 @@
-// Importar todas as imagens para garantir que sejam incluídas no build
 import bannereco from './bannereco.png';
 import base from './base.jpg';
 import batom from './batom.png';
@@ -11,12 +10,10 @@ import sabonete from './sabonete.png';
 import shampoo from './shampoo.png';
 import vestido from './vestido.jpg';
 
-// Exportar as imagens para uso nos componentes
 export {
     bannereco, base, batom, calca, camisaVerde, jaqueta, maquina, planta, sabonete, shampoo, vestido
 };
 
-// Mapear as imagens para facilitar o uso
 export const imageMap = {
   'camisaVerde.png': camisaVerde,
   'calca.png': calca,
