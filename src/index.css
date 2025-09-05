@@ -30,20 +30,10 @@ body {
   padding: 0 1rem;
 }
 
-/* Garantir que desktop tenha scroll horizontal normal */
-@media (min-width: 769px) {
-  html,
-  body {
-    overflow-x: auto;
-  }
-}
-
-/* Prevenir overflow horizontal apenas em dispositivos móveis */
-@media (max-width: 768px) {
-  html,
-  body {
-    overflow-x: hidden;
-  }
+/* Prevenir overflow horizontal em todos os dispositivos */
+html,
+body {
+  overflow-x: hidden;
 }
 
 /* Media queries para diferentes breakpoints */
