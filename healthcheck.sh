@@ -1,31 +1,25 @@
 #!/bin/sh
 
-# Health check script for EcoTrend
-# Checks if nginx is running and responding
+# Health check script for EcoTrend Vite React app
+# Checks if the Vite preview server is running and responding
 
-# Check if nginx is running
-if ! pgrep nginx > /dev/null; then
-    echo "Nginx is not running"
+# Check if the Vite preview process is running
+if ! pgrep -f "vite preview" > /dev/null; then
+    echo "Vite preview server is not running"
     exit 1
 fi
 
-# Use wget if available, otherwise use nc to check port
-if command -v wget > /dev/null 2>&1; then
-    # Check health endpoint
-    if ! wget --quiet --tries=1 --timeout=3 --spider http://localhost/health > /dev/null 2>&1; then
-        echo "Health check endpoint not responding"
-        exit 1
-    fi
-    
-    # Check main page
-    if ! wget --quiet --tries=1 --timeout=3 --spider http://localhost/ > /dev/null 2>&1; then
-        echo "Main page not accessible"
+# Use curl to check if the server is responding on port 3000
+if command -v curl > /dev/null 2>&1; then
+    # Check if the main page is accessible
+    if ! curl -f --connect-timeout 5 --max-time 10 http://localhost:3000/ > /dev/null 2>&1; then
+        echo "Main page not accessible on port 3000"
         exit 1
     fi
 else
-    # Fallback: just check if port 80 is open
-    if ! nc -z localhost 80; then
-        echo "Port 80 not accessible"
+    # Fallback: just check if port 3000 is open
+    if ! nc -z localhost 3000; then
+        echo "Port 3000 not accessible"
         exit 1
     fi
 fi
