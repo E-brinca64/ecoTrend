@@ -5,7 +5,7 @@
             "nome": "camiseta",
             "cor": "preta",
             "preco": 69.90,
-            "img": "src/assets/teste.jpg",
+            "img": "src/assets/camisaVerde.png",
             "categoria": "roupas"
         },
         {
@@ -63,7 +63,7 @@
             "nome": "shampoo",
             "cor": "verde",
             "preco": 23.90,
-            "img": "src/assets/shampoo.jpg",
+            "img": "src/assets/shampoo.png",
             "categoria": "ProdutosDeBeleza"
         },
         {
