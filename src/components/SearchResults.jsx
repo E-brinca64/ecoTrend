@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import "../styles/SearchResults.css";
 import Card from './Card';
 
-function SearchResults({ searchTerm, searchResults, onVoltar }) {
+function SearchResults({ searchTerm, searchResults, onVoltar, onProductClick }) {
     const [produtosFiltrados, setProdutosFiltrados] = useState([]);
     const [filtroPreco, setFiltroPreco] = useState({ min: '', max: '' });
     const [filtroCor, setFiltroCor] = useState('');
@@ -136,6 +136,7 @@ function SearchResults({ searchTerm, searchResults, onVoltar }) {
                             img={produto.img}
                             categoria={produto.categoria}
                             cor={produto.cor}
+                            onProductClick={onProductClick}
                         />
                     ))}
                 </div>

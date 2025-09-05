@@ -1,9 +1,30 @@
 import { useState } from "react";
 import roupa from "../assets/teste.jpg";
+import { useFavorites } from "../contexts/FavoritesContext";
 import "../styles/Card.css";
 
 function Card(props){
     const [showAlert, setShowAlert] = useState(false);
+    const { toggleFavorite, isFavorite } = useFavorites();
+
+    const handleCardClick = () => {
+        if (props.onProductClick) {
+            props.onProductClick(props.id);
+        }
+    };
+
+    const handleFavoriteClick = (e) => {
+        e.stopPropagation();
+        const produto = {
+            id: props.id,
+            nome: props.nome,
+            preco: props.preco,
+            img: props.img,
+            categoria: props.categoria,
+            cor: props.cor
+        };
+        toggleFavorite(produto);
+    };
 
     const handleAdicionarAoCarrinho = () => {
         const produto = {
@@ -35,13 +56,26 @@ function Card(props){
     };
 
     return(
-        <div className="card">
+        <div className="card" onClick={handleCardClick}>
+            {props.showFavoriteButton !== false && (
+                <button 
+                    className={`favorite-btn ${isFavorite(props.id) ? 'favorited' : ''}`}
+                    onClick={handleFavoriteClick}
+                    title={isFavorite(props.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                >
+                    {isFavorite(props.id) ? '❤️' : '🤍'}
+                </button>
+            )}
+            
             <img className="card-img" src={props.img || roupa} alt={props.nome}/>
             <h2 className="card-nome">{props.nome}</h2>
             
             <p className="card-price">R$ {props.preco?.toFixed(2)}</p>
 
-            <button className="card-button" onClick={handleAdicionarAoCarrinho}>
+            <button className="card-button" onClick={(e) => {
+                e.stopPropagation();
+                handleAdicionarAoCarrinho();
+            }}>
                 Adicionar ao carrinho
             </button>
             

@@ -36,6 +36,13 @@ function Sidebar({ isOpen, onClose, onNavigate }){
                         
                         <button 
                             className="sidebar-menu-item"
+                            onClick={() => handleMenuItemClick('favoritos')}
+                        >
+                            💚 Meus Favoritos
+                        </button>
+                        
+                        <button 
+                            className="sidebar-menu-item"
                             onClick={() => handleMenuItemClick('sobre')}
                         >
                             Sobre Nós

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import "../styles/Catalogo.css";
 import Card from './Card';
 
-function Catalogo({ categoria, onVoltar }) {
+function Catalogo({ categoria, onVoltar, onProductClick }) {
     const [produtos, setProdutos] = useState([]);
     const [produtosFiltrados, setProdutosFiltrados] = useState([]);
     const [titulo, setTitulo] = useState('');
@@ -284,6 +284,7 @@ function Catalogo({ categoria, onVoltar }) {
                         img={produto.img}
                         categoria={produto.categoria}
                         cor={produto.cor}
+                        onProductClick={onProductClick}
                     />
                 ))}
             </div>

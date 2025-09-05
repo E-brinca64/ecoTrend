@@ -5,7 +5,7 @@ import Card from './Card';
 import Sidebar from './Sidebar';
 import VerMais from './VerMais';
 
-function Body({ onVerMais }){
+function Body({ onVerMais, onProductClick }){
     const [roupas, setRoupas] = useState([]);
     const [produtosDeBeleza, setProdutosDeBeleza] = useState([]);
     const [itensParaCasa, setItenParaCasa] = useState([]);
@@ -41,6 +41,7 @@ function Body({ onVerMais }){
                                 img={roupa.img}
                                 categoria={roupa.categoria}
                                 cor={roupa.cor}
+                                onProductClick={onProductClick}
                             />
                         ))}
                         {roupas.length > 3 && (
@@ -68,6 +69,7 @@ function Body({ onVerMais }){
                                 img={beleza.img}
                                 categoria={beleza.categoria}
                                 cor={beleza.cor}
+                                onProductClick={onProductClick}
                             />
                         ))}
                         {produtosDeBeleza.length > 3 && (
@@ -95,6 +97,7 @@ function Body({ onVerMais }){
                                 img={casa.img}
                                 categoria={casa.categoria}
                                 cor={casa.cor}
+                                onProductClick={onProductClick}
                             />
                         ))}
                         {itensParaCasa.length > 3 && (

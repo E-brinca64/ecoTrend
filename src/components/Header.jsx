@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { BsCart2, BsSearch } from "react-icons/bs";
+import { BsCart2, BsHeart, BsSearch } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
+import { useFavorites } from "../contexts/FavoritesContext";
 import "../styles/Header.css";
 import CarrinhoModal from "./CarrinhoModal";
 import LoginModal from "./LoginModal";
 
-function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
+function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesClick }){
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -13,6 +14,7 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
     const [searchTerm, setSearchTerm] = useState('');
     const [searchHistory, setSearchHistory] = useState([]);
     const [showHistory, setShowHistory] = useState(false);
+    const { favoritesCount } = useFavorites();
 
     useEffect(() => {
         const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
@@ -171,6 +173,11 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen }){
                 </div>
 
                 <div className="header-actions">
+                    <div className="header-favorites" onClick={onFavoritesClick}>
+                        <BsHeart size={24} color="#000" /> 
+                        <p className="header-favorites-text">Favoritos ({favoritesCount || 0})</p>
+                    </div>
+
                     <div className="header-cart" onClick={() => setIsCarrinhoOpen(true)}>
                         <BsCart2 size={24} color="#000" /> 
                         <p className="header-cart-text">Carrinho ({totalItens})</p>
