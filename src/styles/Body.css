@@ -136,6 +136,7 @@ main {
 @media (max-width: 768px) {
   main {
     padding: 0 1rem;
+    overflow-x: hidden;
   }
 
   .banner {
@@ -175,6 +176,7 @@ main {
 @media (max-width: 480px) {
   main {
     padding: 0 0.5rem;
+    overflow-x: hidden;
   }
 
   .banner {

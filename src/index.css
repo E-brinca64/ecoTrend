@@ -14,7 +14,6 @@ body {
   background-color: #f1f1f1;
   font-family: "Epilogue", sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 .app {
@@ -29,6 +28,13 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+/* Prevenir overflow horizontal apenas em dispositivos móveis */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 /* Media queries para diferentes breakpoints */
