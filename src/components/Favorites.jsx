@@ -8,7 +8,6 @@ function Favorites({ onVoltar, onProductClick }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simular loading para consistência
     const timer = setTimeout(() => {
       setLoading(false);
     }, 500);

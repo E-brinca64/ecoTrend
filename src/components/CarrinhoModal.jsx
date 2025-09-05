@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BsDash, BsPlus, BsX } from 'react-icons/bs';
 import '../styles/CarrinhoModal.css';
 
-function CarrinhoModal({ isOpen, onClose }) {
+function CarrinhoModal({ isOpen, onClose, onFinalizarCompra }) {
     const [carrinho, setCarrinho] = useState([]);
 
     useEffect(() => {
@@ -112,7 +112,15 @@ function CarrinhoModal({ isOpen, onClose }) {
                                     >
                                         Limpar Carrinho
                                     </button>
-                                    <button className="carrinho-btn-finalizar">
+                                    <button 
+                                        className="carrinho-btn-finalizar"
+                                        onClick={() => {
+                                            onClose();
+                                            if (onFinalizarCompra) {
+                                                onFinalizarCompra(carrinho);
+                                            }
+                                        }}
+                                    >
                                         Finalizar Compra
                                     </button>
                                 </div>

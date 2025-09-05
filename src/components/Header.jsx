@@ -3,12 +3,10 @@ import { BsCart2, BsHeart, BsSearch } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
 import { useFavorites } from "../contexts/FavoritesContext";
 import "../styles/Header.css";
-import CarrinhoModal from "./CarrinhoModal";
 import LoginModal from "./LoginModal";
 
-function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesClick }){
+function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesClick, onCarrinhoClick }){
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [totalItens, setTotalItens] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
@@ -178,7 +176,7 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesC
                         <p className="header-favorites-text">Favoritos ({favoritesCount || 0})</p>
                     </div>
 
-                    <div className="header-cart" onClick={() => setIsCarrinhoOpen(true)}>
+                    <div className="header-cart" onClick={onCarrinhoClick}>
                         <BsCart2 size={24} color="#000" /> 
                         <p className="header-cart-text">Carrinho ({totalItens})</p>
                     </div>
@@ -197,11 +195,6 @@ function Header({ onSearch, onHome, onSidebarToggle, isSidebarOpen, onFavoritesC
             </div>
             
             <div className="divisoria-verde"></div>
-            
-            <CarrinhoModal 
-                isOpen={isCarrinhoOpen} 
-                onClose={() => setIsCarrinhoOpen(false)} 
-            />
             
             <LoginModal 
                 isOpen={isLoginOpen} 

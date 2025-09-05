@@ -14,7 +14,6 @@ function ProductDetail({ productId, onVoltar }) {
         const response = await fetch('/produtos.JSON');
         const data = await response.json();
         
-        // Buscar o produto em todas as categorias
         let foundProduct = null;
         for (const category in data) {
           foundProduct = data[category].find(item => item.id === parseInt(productId));
@@ -120,8 +119,6 @@ function ProductDetail({ productId, onVoltar }) {
         <SimilarProducts 
           currentProduct={product}
           onProductClick={(id) => {
-            // Aqui você pode implementar navegação para outro produto
-            // Por enquanto, apenas recarrega a página com o novo ID
             window.location.href = `#/produto/${id}`;
           }}
         />

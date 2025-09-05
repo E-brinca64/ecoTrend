@@ -24,12 +24,10 @@ function LoginModal({ isOpen, onClose }) {
         e.preventDefault();
         
         if (isLogin) {
-            // Lógica de login
             console.log('Login:', { email: formData.email, senha: formData.senha });
             alert('Login realizado com sucesso!');
             onClose();
         } else {
-            // Lógica de registro
             if (formData.senha !== formData.confirmarSenha) {
                 alert('As senhas não coincidem!');
                 return;
@@ -39,7 +37,6 @@ function LoginModal({ isOpen, onClose }) {
             onClose();
         }
         
-        // Limpar formulário
         setFormData({
             nome: '',
             email: '',

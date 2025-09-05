@@ -8,12 +8,10 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     
-    // Estados dos filtros
     const [filtroPreco, setFiltroPreco] = useState({ min: '', max: '' });
     const [filtroCor, setFiltroCor] = useState('');
     const [ordem, setOrdem] = useState('nome');
     
-    // Estado da sidebar de filtros mobile
     const [isFiltrosOpen, setIsFiltrosOpen] = useState(false);
 
     useEffect(() => {
@@ -61,11 +59,9 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
             .catch(err => console.error("Erro ao carregar produtos:", err));
     }, [categoria]);
 
-    // Função para aplicar filtros
     const aplicarFiltros = () => {
         let produtosFiltrados = [...produtos];
 
-        // Filtro por preço
         if (filtroPreco.min !== '') {
             produtosFiltrados = produtosFiltrados.filter(produto => produto.preco >= parseFloat(filtroPreco.min));
         }
@@ -73,14 +69,12 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
             produtosFiltrados = produtosFiltrados.filter(produto => produto.preco <= parseFloat(filtroPreco.max));
         }
 
-        // Filtro por cor
         if (filtroCor !== '') {
             produtosFiltrados = produtosFiltrados.filter(produto => 
                 produto.cor.toLowerCase().includes(filtroCor.toLowerCase())
             );
         }
 
-        // Ordenação
         produtosFiltrados.sort((a, b) => {
             switch(ordem) {
                 case 'preco-menor':
@@ -96,22 +90,18 @@ function Catalogo({ categoria, onVoltar, onProductClick }) {
         setProdutosFiltrados(produtosFiltrados);
     };
 
-    // Aplicar filtros quando os valores mudarem
     useEffect(() => {
         aplicarFiltros();
     }, [produtos, filtroPreco, filtroCor, ordem]);
 
-    // Função para limpar filtros
     const limparFiltros = () => {
         setFiltroPreco({ min: '', max: '' });
         setFiltroCor('');
         setOrdem('nome');
     };
 
-    // Obter cores únicas dos produtos
     const coresUnicas = [...new Set(produtos.map(produto => produto.cor).filter(cor => cor !== ''))];
 
-    // Funções para controlar a sidebar de filtros mobile
     const toggleFiltros = () => {
         setIsFiltrosOpen(!isFiltrosOpen);
     };

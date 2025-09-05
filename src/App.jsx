@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import Body from './components/Body';
+import CarrinhoModal from './components/CarrinhoModal';
 import Catalogo from './components/Catalogo';
+import Checkout from './components/Checkout';
 import Favorites from './components/Favorites';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import OrderConfirmation from './components/OrderConfirmation';
 import ProductDetail from './components/ProductDetail';
 import SearchResults from './components/SearchResults';
 import Sidebar from './components/Sidebar';
@@ -16,6 +19,9 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
+  const [carrinhoCheckout, setCarrinhoCheckout] = useState([]);
+  const [pedidoConfirmado, setPedidoConfirmado] = useState(null);
 
   const navegarParaCatalogo = (categoria) => {
     setCategoriaAtual(categoria);
@@ -75,6 +81,27 @@ function App() {
     setPaginaAtual('favoritos');
   };
 
+  const handleCarrinhoClick = () => {
+    setIsCarrinhoOpen(true);
+  };
+
+  const handleFinalizarCompra = (carrinho) => {
+    setCarrinhoCheckout(carrinho);
+    setPaginaAtual('checkout');
+  };
+
+  const handleCompraFinalizada = (pedido) => {
+    setPedidoConfirmado(pedido);
+    setPaginaAtual('confirmacao');
+    localStorage.removeItem('carrinho');
+    window.dispatchEvent(new CustomEvent('carrinhoAtualizado'));
+  };
+
+  const voltarDaConfirmacao = () => {
+    setPedidoConfirmado(null);
+    setPaginaAtual('home');
+  };
+
   return (
     <FavoritesProvider>
       <div className="app">
@@ -84,6 +111,7 @@ function App() {
           onSidebarToggle={handleSidebarToggle}
           isSidebarOpen={isSidebarOpen}
           onFavoritesClick={handleFavoritesClick}
+          onCarrinhoClick={handleCarrinhoClick}
         />
         {paginaAtual === 'home' ? (
           <Body onVerMais={navegarParaCatalogo} onProductClick={handleProductClick} />
@@ -93,6 +121,17 @@ function App() {
           <ProductDetail productId={selectedProductId} onVoltar={voltarDaPaginaProduto} />
         ) : paginaAtual === 'favoritos' ? (
           <Favorites onVoltar={voltarParaHome} onProductClick={handleProductClick} />
+        ) : paginaAtual === 'checkout' ? (
+          <Checkout
+            onVoltar={voltarParaHome}
+            carrinho={carrinhoCheckout}
+            onFinalizarCompra={handleCompraFinalizada}
+          />
+        ) : paginaAtual === 'confirmacao' ? (
+          <OrderConfirmation
+            onVoltar={voltarDaConfirmacao}
+            pedido={pedidoConfirmado}
+          />
         ) : (
           <SearchResults 
             searchTerm={searchTerm} 
@@ -105,6 +144,11 @@ function App() {
           isOpen={isSidebarOpen}
           onClose={handleSidebarClose}
           onNavigate={handleSidebarNavigate}
+        />
+        <CarrinhoModal 
+          isOpen={isCarrinhoOpen}
+          onClose={() => setIsCarrinhoOpen(false)}
+          onFinalizarCompra={handleFinalizarCompra}
         />
         <Footer />
       </div>

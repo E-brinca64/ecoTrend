@@ -13,19 +13,17 @@ function SimilarProducts({ currentProduct, onProductClick }) {
         const response = await fetch('/produtos.JSON');
         const data = await response.json();
         
-        // Buscar produtos da mesma categoria, excluindo o produto atual
         let allProducts = [];
         for (const category in data) {
           allProducts = [...allProducts, ...data[category]];
         }
         
-        // Filtrar produtos da mesma categoria e excluir o atual
         const similar = allProducts
           .filter(product => 
             product.categoria === currentProduct.categoria && 
             product.id !== currentProduct.id
           )
-          .slice(0, 4); // Limitar a 4 produtos similares
+          .slice(0, 4);
         
         setSimilarProducts(similar);
       } catch (err) {

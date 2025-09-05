@@ -13,7 +13,6 @@ export const useFavorites = () => {
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  // Carregar favoritos do localStorage na inicialização
   useEffect(() => {
     const savedFavorites = localStorage.getItem('favorites');
     if (savedFavorites) {
@@ -26,33 +25,28 @@ export const FavoritesProvider = ({ children }) => {
     }
   }, []);
 
-  // Salvar favoritos no localStorage sempre que mudarem
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // Adicionar produto aos favoritos
   const addToFavorites = (product) => {
     setFavorites(prev => {
       const isAlreadyFavorite = prev.some(fav => fav.id === product.id);
       if (isAlreadyFavorite) {
-        return prev; // Não adiciona se já estiver nos favoritos
+        return prev;
       }
       return [...prev, product];
     });
   };
 
-  // Remover produto dos favoritos
   const removeFromFavorites = (productId) => {
     setFavorites(prev => prev.filter(fav => fav.id !== productId));
   };
 
-  // Verificar se um produto está nos favoritos
   const isFavorite = (productId) => {
     return favorites.some(fav => fav.id === productId);
   };
 
-  // Alternar favorito (adicionar se não estiver, remover se estiver)
   const toggleFavorite = (product) => {
     if (isFavorite(product.id)) {
       removeFromFavorites(product.id);
@@ -61,7 +55,6 @@ export const FavoritesProvider = ({ children }) => {
     }
   };
 
-  // Limpar todos os favoritos
   const clearFavorites = () => {
     setFavorites([]);
   };
