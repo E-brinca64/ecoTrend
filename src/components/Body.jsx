@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Banner from '../assets/banner.jpg';
+import Banner from '../assets/banner.png';
 import "../styles/Body.css";
 import Card from './Card';
 import Sidebar from './Sidebar';
