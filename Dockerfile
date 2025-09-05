@@ -1,42 +1,21 @@
-# Build stage
-FROM node:20-alpine AS build
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copia dependências
 COPY package*.json ./
 
-# Install all dependencies (including dev dependencies for build)
+# Instala todas as dependências, inclusive devDependencies
 RUN npm ci
 
-# Copy source code
+# Copia o código fonte
 COPY . .
 
-# Build the application
+# Build da aplicação Next.js
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
+# Expõe a porta padrão do Next.js
+EXPOSE 3000
 
-# Install wget and netcat for health checks
-RUN apk add --no-cache wget netcat-openbsd
-
-# Copy built assets from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copy nginx configuration
-COPY nginx-ultra-simple.conf /etc/nginx/conf.d/default.conf
-
-# Copy health check script
-COPY healthcheck.sh /usr/local/bin/healthcheck.sh
-RUN chmod +x /usr/local/bin/healthcheck.sh
-
-# Expose port 80
-EXPOSE 80
-
-# Add health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD /usr/local/bin/healthcheck.sh
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para rodar a aplicação em produção (Next.js standalone)
+CMD ["npm", "start"]
